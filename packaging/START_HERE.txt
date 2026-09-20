@@ -1,0 +1,16 @@
+SENSOR LAB STUDIO  -  no installation needed
+=============================================
+
+1. Unzip this folder (right-click > Extract All). Do not run it from inside the zip.
+2. Open the folder and double-click
+      SensorLabStudio.exe      (Windows)
+      SensorLabStudio          (macOS / Linux)
+3. A black window opens and, after a few seconds, your web browser shows the app.
+   If the browser does not open, type   http://localhost:8501   in the address bar.
+4. To stop the program, close the black window.
+
+If Windows says "Windows protected your PC": click "More info" > "Run anyway".
+(The program is not digitally signed, which is normal for student projects.)
+If macOS says the app cannot be opened: right-click it > Open > Open.
+It works without an internet connection.
+Your lab name and logo are saved inside this folder (lab_config.json and the assets folder).
