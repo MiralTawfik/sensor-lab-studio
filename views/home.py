@@ -58,42 +58,14 @@ for m in registry.MODELS.values():
 st.markdown(branding.html_table(rows), unsafe_allow_html=True)
 
 st.divider()
-st.subheader("Lab identity")
-st.caption("The name and logo appear in the header of every page. Your logo file is stored in the app's assets folder, "
-           "so it is still there next time you start the app.")
-
+st.subheader("About this project")
 cfg = branding.load_config()
-left, right = st.columns([3, 2])
-with left:
-    with st.form("identity"):
-        c1, c2 = st.columns(2)
-        lab = c1.text_input("Lab name", cfg["lab_name"])
-        tag = c2.text_input("Tagline", cfg["tagline"])
-        uni = st.text_input("University / faculty", cfg["university"])
-        title = st.text_input("Project title", cfg["project_title"])
-        c3, c4 = st.columns(2)
-        stu = c3.text_input("Student name(s)", cfg["student"])
-        sup = c4.text_input("Supervisor", cfg["supervisor"])
-        if st.form_submit_button("Save identity", type="primary"):
-            branding.save_config({"lab_name": lab, "tagline": tag, "university": uni, "project_title": title,
-                                  "student": stu, "supervisor": sup})
-            st.rerun()
-with right:
-    st.image(str(branding.find_logo()), width=140)
-    if branding.has_user_logo():
-        st.caption("Your lab logo is in use.")
-    else:
-        st.caption("Placeholder logo. Upload your lab logo (PNG, JPG, WEBP or SVG):")
-    up = st.file_uploader("Lab logo", type=["png", "jpg", "jpeg", "webp", "svg"], label_visibility="collapsed")
-    if up is not None and st.button("Use this logo", type="primary"):
-        try:
-            branding.save_uploaded_logo(up.getvalue(), up.name)
-            st.rerun()
-        except Exception as e:                                       # noqa: BLE001
-            st.error(str(e))
-    if branding.has_user_logo() and st.button("Remove my logo"):
-        branding.remove_user_logo()
-        st.rerun()
+about = [{"": "Laboratory", " ": cfg["lab_name"]},
+         {"": "University / faculty", " ": cfg["university"]},
+         {"": "Supervisor", " ": cfg["supervisor"]},
+         {"": "Project", " ": cfg["project_title"]}]
+st.markdown("<table class='lab-table'><tbody>" + "".join(f"<tr><td>{r['']}</td><td>{r[' ']}</td></tr>" for r in about)
+            + "</tbody></table>", unsafe_allow_html=True)
 
 st.divider()
 st.caption("Physics models are simplified analytical models for teaching and design exploration. Material constants are "
