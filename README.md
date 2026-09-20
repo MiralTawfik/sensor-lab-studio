@@ -13,7 +13,7 @@ Students never have to install Python. Choose one of these three ways:
 Students only open a link in their browser (works on phones, tablets and any computer). You publish the app once on **Streamlit Community Cloud**:
 
 1. Create a free account at <https://github.com> and a new **public** repository (for example `sensor-lab-studio`).
-2. Upload the contents of this folder to it (GitHub page: *Add file > Upload files*; drag in everything, including the `core`, `views`, `assets`, `sample_data` and `.streamlit` folders). Keep `lab_config.json` and `assets/logo.png` if you want your lab name and logo to show.
+2. Upload the contents of this folder to it (GitHub page: *Add file > Upload files*; drag in everything, including the `core`, `views`, `assets`, `sample_data` and `.streamlit` folders). Add your logo as `assets/logo.png` if you want it to show.
 3. Go to <https://share.streamlit.io>, sign in with GitHub and click **Create app**.
 4. Pick the repository, branch `main`, main file path `app.py`. Under *Advanced settings* choose **Python 3.11** (3.12 also works).
 5. Click **Deploy**. After a few minutes you get a link such as `https://your-name-sensor-lab.streamlit.app`. Send it to your students.
@@ -58,19 +58,15 @@ streamlit run app.py
 
 The app opens at <http://localhost:8501>.
 
-## Your lab logo and name
+## Lab name, university, supervisor and logo
 
-1. Open the **Home** page, scroll to **Lab identity**.
-2. Type the lab name, university, project title, student and supervisor, then click **Save identity**.
-3. Upload your logo (PNG, JPG, WEBP or SVG) and click **Use this logo**.
-
-The logo is copied to `assets/logo.<ext>` and the text is saved in `lab_config.json`, so they are still there next time. You can also just drop a file named `assets/logo.png` into the folder. Until then a placeholder logo is shown.
+They are fixed and shown on every page (nobody is asked for them in the app): **ARAtronics Research Center**, GUC - Faculty of Engineering and Material Science, supervisor Prof. Amir Roushdy. To change them, edit `DEFAULT_CONFIG` at the top of `core/branding.py`. The logo is the file `assets/logo.png` (PNG, JPG, WEBP or SVG named `logo`); until you add it a placeholder logo is shown.
 
 ## Pages
 
 | Page | What it does |
 |---|---|
-| **Home** | Overview, list of sensors, lab identity and logo. |
+| **Home** | Overview, quick start for students, list of sensors, about this project. |
 | **Sensor Lab** | Choose the transducer, set its parameters, run a virtual calibration; see sensitivity, SD, calibration curve and equation, parameter study, temperature drift, and log data for ML. |
 | **ML Studio** | Simulate or upload data, predict sensitivity from parameters, optimise a design, correct temperature drift, detect faults. |
 | **Theory** | Definitions, equations, assumptions and references. |
