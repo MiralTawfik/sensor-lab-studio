@@ -2,37 +2,27 @@
 from __future__ import annotations
 
 import base64
-import json
 import mimetypes
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 ASSETS = ROOT / "assets"
-CONFIG_PATH = ROOT / "lab_config.json"
 LOGO_EXTS = (".png", ".jpg", ".jpeg", ".webp", ".svg")
 
+# Fixed identity: shown on every page and NOT editable inside the app.
+# To change it, edit the values below (and put your logo file at assets/logo.png).
 DEFAULT_CONFIG = {
-    "lab_name": "Your Lab Name",
-    "tagline": "Sensor Technology Laboratory",
-    "university": "Your University - Faculty of Engineering",
+    "lab_name": "ARAtronics Research Center",
+    "tagline": "GUC - Faculty of Engineering and Material Science",
+    "university": "GUC - Faculty of Engineering and Material Science",
     "project_title": "Sensor Characterization and Machine-Learning Studio",
     "student": "",
-    "supervisor": "",
+    "supervisor": "Prof. Amir Roushdy",
 }
 
 
 def load_config() -> dict:
-    cfg = dict(DEFAULT_CONFIG)
-    try:
-        if CONFIG_PATH.exists():
-            cfg.update(json.loads(CONFIG_PATH.read_text(encoding="utf-8")))
-    except Exception:
-        pass
-    return cfg
-
-
-def save_config(cfg: dict) -> None:
-    CONFIG_PATH.write_text(json.dumps(cfg, indent=2, ensure_ascii=False), encoding="utf-8")
+    return dict(DEFAULT_CONFIG)
 
 
 def find_logo() -> Path:
@@ -117,7 +107,7 @@ h2, h3 { border-bottom: 1px solid var(--line); padding-bottom: 4px; }
   min-width:84px; }
 .lab-logo { height:64px; width:auto; max-width:260px; object-fit:contain; }
 .lab-text { min-width:0; }
-.lab-name { font-size:0.95rem; letter-spacing:.08em; text-transform:uppercase; color:#f0d9d9; font-weight:700; }
+.lab-name { font-size:1.05rem; letter-spacing:.03em; color:#f0d9d9; font-weight:700; }
 .lab-tag { font-weight:400; text-transform:none; letter-spacing:0; color:#e6c6c6; }
 .lab-title { font-size:2.1rem; font-weight:700; color:#fff; line-height:1.15; margin-top:2px; }
 .lab-sub { color:#f3e3e3; font-size:1.05rem; margin-top:4px; }
